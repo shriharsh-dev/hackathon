@@ -27,6 +27,7 @@ export interface SubmitTurnResponse {
   gamification: Gamification; // Not optional
   progress: ProgressUpdate; // Added
 }
+
 // NEW: Matches main.py's ProgressUpdate
 export interface ProgressUpdate {
   sessionCount: number;
@@ -47,7 +48,7 @@ export async function startSession(scenarioId: string): Promise<{ sessionId: str
   return res.data;
 }
 
-export async function submitTurn(sessionId: string, userSpeechText: string): Promise<TurnResponse> {
+export async function submitTurn(sessionId: string, userSpeechText: string): Promise<SubmitTurnResponse> {
   const res = await axios.post(`${API_BASE}/${sessionId}/submit_turn`, null, { params: { userSpeechText } });
   return res.data;
 }
